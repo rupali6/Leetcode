@@ -1,0 +1,29 @@
+/*
+*We havent used 2 pointer approach here because, unsorted array so we have to sort the array and store the original array as well.
+Time Complexity: O(N) + O(N*logN), where N = size of the array.
+Reason: The loop will run at most N times. And sorting the array will take N*logN time complexity.
+
+Space Complexity: O(1) as we are not using any extra space.
+
+Note: Here we are distorting the given array. So, if we need to consider this change, the space complexity will be O(N).
+*/
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int m = nums.length;
+        int sol[]= {-1,-1};
+        Map<Integer,Integer> hm = new HashMap<Integer,Integer>();
+        for(int i=0;i<m;i++){
+            int temp=target-nums[i];
+
+            if(hm.containsKey(temp)){
+
+                sol[0]=hm.get(temp);
+                sol[1]=i;
+                return sol;
+            }
+            hm.put(nums[i],i);
+        }
+        return sol;
+    }
+    
+}
